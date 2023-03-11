@@ -1,29 +1,29 @@
-import { useState, useEffect } from "react";
-import {BrowserRouter, Switch, Route} from "react-router-dom"
+import React, { useReducer, useState } from "react";
+import Login from "./Login/Login";
+import Signup from "./SignUp/Signup";
 
+import { Route, Routes, Navigate } from "react-router-dom";
+// import Home from "./Home";
 
-function App() {
-  const [count, setCount] = useState(0);
+import { Nav } from "./Nav";
 
-  useEffect(() => {
-    fetch("/hello")
-      .then((r) => r.json())
-      .then((data) => setCount(data.count));
-  }, []);
+ function App() {
+
+const [user, setUser] = useState(null)
+
+const updateUser = (user) => setUser(user)
 
   return (
-    <BrowserRouter> 
-    <div className="App">
-      <Switch>
-        <Route path="/testing"> 
-      <h1>testing</h1>
-        </Route>
-      <Route path='/' > 
-      <h1>Page Count: {count}</h1>
-      </Route>
-      </Switch>
-    </div>
-    </BrowserRouter>
+    <>
+      <Nav />
+
+      <Routes>
+        <Route path="/Signup" exact element={<Signup />}></Route>
+        <Route path="/Login" exact element={<Login updateUser = {updateUser} />}></Route>
+        {/* <Route path="/home" element={<Home />}></Route> */}
+        <Route path="*" element={<Navigate to="Signup" />}></Route>
+      </Routes>
+    </>
   );
 }
 
