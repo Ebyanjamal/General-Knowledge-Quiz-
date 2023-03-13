@@ -2,10 +2,14 @@
   "dependencies": {
     "bootstrap": "^5.2.3",
     "react-bulma-components": "^4.1.0",
+    "react-router": "^6.9.0",
     "react-router-dom": "^6.9.0",
     "styled-components": "^5.3.8"
   },
   "scripts": {
     "start": "npx concurrently \"rails s\" \"npm --prefix client run start\" -k"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.2.7"
   }
 }

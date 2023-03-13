@@ -5,9 +5,10 @@ function Question({ question, onAnswer }) {
   };
 
   return (
-    <div>
-      <div>{question.text}</div>
-      <div>{question.type}</div>
+    <div className="grid grid-cols-1" >
+      <h1 className="font-semibold" >{question.text}</h1>
+      
+      <div>{question.incorrect_answers}</div>
 
      
       <form action="" onSubmit={handleSubmit}></form>

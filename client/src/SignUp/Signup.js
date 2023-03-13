@@ -1,12 +1,11 @@
 import React from "react";
 import "./Signup.css";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+
 
 
 function Signup() {
   const [user, setCurrentUser] = useState("");
-  const navigate = useNavigate();
   
 
   const [formData, setFormData] = useState({
@@ -37,11 +36,10 @@ function Signup() {
     })
 
       .then((response) => {
-        navigate('')
         if (response.ok) {
           response.json().then((user) => {
             setCurrentUser(user);
-            navigate("/home")
+
           });
         } else {
           response.json().then((errors) => {
@@ -52,12 +50,10 @@ function Signup() {
       .catch((err) => console.err(err));
   }
 
-  <h2> Regestration</h2>;
-
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-2">
-      <h2>Register</h2>
-      <div className="form-control flex ">
+    <form onSubmit={handleSubmit} className="w-full max-w-xs">
+      <h2 className=" margin-top:40px " >Register Here!</h2>
+      <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 ">
         <label
           className="block text-gray-700 text-sm font-bold mb-2"
           for="name"
@@ -65,11 +61,10 @@ function Signup() {
           Name
         </label>
         <input
-          className="shadow appearance-none border rounded w-fullpy-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+         className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="inline-full-name"
           type="text"
           placeholder="name"
           name="name"
-          id="name"
           value={formData.name}
           onChange={handleChange}
         />
@@ -118,8 +113,10 @@ function Signup() {
           onChange={handleChange}
         />
       </div> */}
-
+    
+    <div className="flex items-center justify-between" > 
       <button type="submit"> SIGN UP ◉</button>
+      </div>
     </form>
   );
 }

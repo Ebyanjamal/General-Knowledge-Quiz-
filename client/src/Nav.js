@@ -11,7 +11,7 @@ export function Nav() {
       {!user ? (
         <>
           <Link to="/Login">Login In ← </Link>{" "}
-          <Link to="/Signup">Sign Up ← </Link>
+          <Link to="/Signup">Sign Up ← </Link> 
         </>
       ) : (
         <>

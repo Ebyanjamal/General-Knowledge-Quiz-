@@ -1,10 +1,44 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 import { makeFetch } from "./makeFetch";
 import Question from "./Question";
+import {NavLink} from 'react-router-dom'
 
-function Home() {
+
+
+function Home({handleDelete}) {
   const [questions, setQuestions] = useState([]);
   const [quizeIndex, setQuizeIndex] = useState(0);
+  const navigate = useNavigate()
+
+
+  function handleQuestion(){
+    fetch(`game_questions`,{
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+    
+    })
+      }
+
+
+      function handleDeleteQuestion(){
+        fetch('game_questions',{
+            method:'DELETE'
+        }).then(handleDelete(questions))
+      }
+
+ 
+
+  const handleLogOut = () => {
+    fetch(`/logout`,{
+        method:'DELETE'
+    })
+    .then(res => {
+        if(res.ok){
+         navigate('/login')
+        }
+    })
+  }
 
   useEffect(() => {
     makeFetch("/game_questions")
@@ -43,6 +77,15 @@ function Home() {
 
   return (
     <div>
+  
+
+        <button onClick={handleLogOut} > Log Out ✌🏼 </button>  
+        <button onClick={handleDeleteQuestion} > Delete Question 🗑 </button>
+        
+        <NavLink to ={`/AddQuestion`} >
+            <button onClick={handleQuestion} >Add Question 🧠</button>
+        </NavLink>
+
       <div className="questin_text d-flex ">
         {quizeIndex + 1}
         <Question
@@ -53,12 +96,7 @@ function Home() {
       </div>
 
       <div className="actions">
-        <button
-          className="btn btn-primary"
-          onClick={() => advanceQuestion("previous")}
-        >
-          preview
-        </button>
+        <button className="btn btn-primary" onClick={() => advanceQuestion("previous")}>preview</button>
 
         <button
           onClick={() => advanceQuestion("next")}
@@ -66,6 +104,9 @@ function Home() {
         >
           next
         </button>
+
+    
+        
       </div>
     </div>
   );

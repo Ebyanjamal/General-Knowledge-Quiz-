@@ -1,68 +1,86 @@
-import React from "react";
-import "./Login.css";
-import {useState} from 'react'
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useNavigate } from "react-router";
 
 
-function Login({ updateUser }) {
-    const [formData, setFormData] = useState({
-        username:'',
-        password:''
+
+
+function Login(){
+    const [user, setCurrentUser] = useState(null);
+    const updateUser = (user =>setCurrentUser(user))
+
+    const [loginData, setLoginData] = useState({
+        email:'',password:''
     })
-    const [errors, setErrors] = useState([])
-    const navigate = useNavigate();
 
-    const {email, password} = formData;
+    let navigate = useNavigate();
 
-    function onSubmit(e) {
-        e.preventDefault()
-        const user = {
-            email,
-            password
-        }
-        fetch(`/login`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(user)
-        })
-        .then(res => {
-            if(res.ok) {
-                res.json().then(user => {
-                    navigate("/")
-                    updateUser(user)
-                })
-            } else {
-                res.json().then(json => setErrors(json.error))
-            }
-        })
+  
+
+   
+
+ 
+
+    function handleChange(e){
+        setLoginData({
+            ...loginData,[e.target.name]: e.target.value
+        });
+
     }
+  function handleSubmit(e) {
+    e.preventDefault();
+    fetch(`/login`,{
+        method:'POST',
+        headers:{
+            'Content-Type':'application/json'
+        },
+        body: JSON.stringify(loginData),
+    }).then((res)=> {
+        if(res.ok){
+            res.json().then((user) => {
+                updateUser(user);
+                navigate('/home')
+            });
+        }
+       else {
+        res.json().then((errors) => {
+            console.log(errors);
+          });
+       }
+    })
+  }
 
-    const handleChange = (e) => {
-        const { name, value } = e.target
-        setFormData({ ...formData, [name]: value })
-      }
-  return (
-    <div className="cover">
-      <h2>Login</h2>
+    
 
-      <div className="form-group">
-        <label htmlFor="email"> Email Address</label>
-        <input 
-        type="email"
-        
-        
-        ></input>
-      </div>
+    return(
+        <>
+    <form onSubmit={handleSubmit} >
+  <label>
+    Email:
+    <input
+     type="text" 
+     name="email"
+     placeholder="email"
+     value={loginData.email}
+     onChange={handleChange}
+      />
+  </label>
 
-      <div className="form-group">
-        <label htmlFor="password"> Password</label>
-        <input type="password"></input>
-      </div>
-      <button type="submit"> SIGN IN </button>
-    </div>
-  );
+  <label>
+    Password:
+    <input
+     type="password" 
+     name="password"
+     placeholder="Password"
+     value={loginData.password}
+     onChange={handleChange}
+     />
+  </label>
+<button type="submit" > Login In  </button>
+
+
+</form>
+        </>
+    )
 }
 
 export default Login;
