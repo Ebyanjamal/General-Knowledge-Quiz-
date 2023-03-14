@@ -6,7 +6,8 @@ render json: User.all
 end
 
 def show
-    render json: @current_user
+  user = User.find(params[:id])
+  render json: user, status: :ok 
   end
 
 

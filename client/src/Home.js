@@ -6,6 +6,7 @@ import {NavLink} from 'react-router-dom'
 
 
 
+
 function Home({handleDelete}) {
   const [questions, setQuestions] = useState([]);
   const [quizeIndex, setQuizeIndex] = useState(0);
@@ -39,6 +40,8 @@ function Home({handleDelete}) {
         }
     })
   }
+//   console.log(users)
+
 
   useEffect(() => {
     makeFetch("/game_questions")
@@ -77,8 +80,9 @@ function Home({handleDelete}) {
 
   return (
     <div>
-  
-
+     <NavLink to={`/Profile`} >
+       <button> Users Log In  </button>
+      </NavLink>
         <button onClick={handleLogOut} > Log Out ✌🏼 </button>  
         <button onClick={handleDeleteQuestion} > Delete Question 🗑 </button>
         

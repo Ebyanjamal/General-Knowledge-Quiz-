@@ -13,7 +13,7 @@ q4=  GameQuestion.create(text: "How many ghosts chase Pac-Man at the start of ea
 q5 = GameQuestion.create(text: "What character has both Robert Downey Jr. and Benedict Cumberbatch played? ", correct_answers:"Sherlock Holmes", incorrect_answers: " Iron-Man, Doctor-Strange")
 q7 =  GameQuestion.create(text:"Which planet has the most moons?",correct_answers:"Saturn", incorrect_answers: "Sun, Uranus, Earth")
 
-30.times do 
+15.times do 
     User.create({
      name: Faker::Name.name,
       email: Faker::Internet.free_email,

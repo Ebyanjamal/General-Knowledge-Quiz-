@@ -52,8 +52,8 @@ function Signup() {
 
   return (
     <form onSubmit={handleSubmit} className="w-full max-w-xs">
-      <h2 className=" margin-top:40px " >Register Here!</h2>
-      <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 ">
+      <h2 className="registerName" >Register Here!</h2>
+      <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 inputField ">
         <label
           className="block text-gray-700 text-sm font-bold mb-2"
           for="name"
@@ -61,7 +61,7 @@ function Signup() {
           Name
         </label>
         <input
-         className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="inline-full-name"
+         class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" id="inline-full-name"
           type="text"
           placeholder="name"
           name="name"
@@ -70,9 +70,9 @@ function Signup() {
         />
       </div>
 
-      <div className="flex gap-2">
-        <label className="block text-gray-700 text-sm font-bold mb-2">
-          email
+      <div className="flex gap-2 inputField">
+        <label className="block text-gray-700 text-sm font-bold mb-2  ">
+          Email
         </label>
         <input
           className="shadow appearance-none border rounded w-fullpy-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -84,9 +84,9 @@ function Signup() {
           onChange={handleChange}
         />
       </div>
-      <div className="flex gap-2">
+      <div className="flex gap-2 inputField">
         <label className="block text-gray-700 text-sm font-bold mb-2">
-          password
+          Password
         </label>
         <input
           className="shadow appearance-none border rounded w-fullpy-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -115,7 +115,7 @@ function Signup() {
       </div> */}
     
     <div className="flex items-center justify-between" > 
-      <button type="submit"> SIGN UP ◉</button>
+      <button className="btn" type="submit"> SIGN UP ◉</button>
       </div>
     </form>
   );

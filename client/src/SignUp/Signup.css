@@ -1,4 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Aboreto&family=Cormorant+Garamond:ital,wght@1,300&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 *{
 
     margin: 0;
@@ -7,6 +11,24 @@
 
 }
 
+.registerName{
+    font-style:inherit;
+    margin: 40px;
+    font-family:'Times New Roman', Times, serif;
+}
+
+.inputField{
+    margin: 40px;
+}
+
+.inputName{
+margin-left: px;
+}
+
+
+.btn {
+    @apply h-14 rounded-full bg-accent px-[42px] text-white text-base font-secondary font-semibold tracking-[0.02em] outline-none hover:bg-accent-hover transition-all duration-300 flex justify-center items-center;
+  }
 
 
 

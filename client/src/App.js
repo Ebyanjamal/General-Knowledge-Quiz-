@@ -1,17 +1,21 @@
 import React, { useState, } from "react";
 import Login from "./Login/Login";
+import { useEffect} from "react";
 import Signup from "./SignUp/Signup";
 import Home from "./Home";
 import AddQuestion from "./Question/AddQuestion";
 import UpdateQuestion from "./Question/UpdateQuestion";
 import { Route, Routes} from "react-router-dom";
 import { Nav } from "./Nav";
+import Profile from "./Profile/Profile";
+import { makeFetch } from "./makeFetch";
 import Question from "./Question";
 import "./index.css"
 
  function App() {
 
   const [game_questions, setGame_Questions] = useState([])
+  const [users,setUsers] = useState([])
 
   function handleDelete(deleteQuestion){
     const updatedQuestion = game_questions.filter(question => question.id !== deleteQuestion.id)
@@ -34,6 +38,13 @@ import "./index.css"
   //   });
   // }, []);
 
+  useEffect(() => {
+    makeFetch("/users")
+    .then((res) => res.json())
+    .then((users) => setUsers(users))
+  },[]);
+
+  // console.log(users)
 
 
 
@@ -49,6 +60,7 @@ import "./index.css"
         {/* <Route path="*" element={<Navigate to="Signup" />}></Route> */}
         <Route path="/AddQuestion" element={<AddQuestion/>}></Route>
         <Route path="/UpdateQuestion" element={<UpdateQuestion onUpdateQuestion={onUpdateQuestion} />}></Route>
+        <Route path= '/Profile' element={<Profile users={users}/>} ></Route>
       </Routes>
     
     </>
